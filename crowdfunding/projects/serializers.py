@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Projects, Pledge
+from .models import Project, Pledge
 
 class PledgeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,7 +7,9 @@ class PledgeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProjectSeralizer(serializers.ModelSerializer):
-    pledges = PledgeSerializer(many=True, read_only=True)
     class Meta:
-        model = Projects
+        model = Project
         fields = '__all__'
+
+class ProjectDetailSerializer(ProjectSeralizer):
+    pledges = PledgeSerializer(many=True, read_only=True)
