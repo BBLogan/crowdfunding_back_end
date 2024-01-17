@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-class Projects(models.Model):
+class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     goal = models.IntegerField()
@@ -19,12 +19,12 @@ class Pledge(models.Model):
     comment = models.CharField(max_length=200)
     anonymous = models.BooleanField()
     project = models.ForeignKey(
-        'Projects',
+        'Project',
         on_delete=models.CASCADE,
         related_name='pledges'
     )
     supporter = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
-        related_name='pledges'
+        related_name='supported_pledges'
     )
