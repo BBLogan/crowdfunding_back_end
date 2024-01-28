@@ -1,0 +1,14 @@
+from users>urls
+
+from django.urls import path, include
+from . import views
+
+urlpatterns = [
+    path('', )
+    path('users/', views.CustomUserList.as_view()),
+    path('users/<int:pk>/', views.CustomUserDetail.as_view()),
+    path('', include('uers.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+]
+
+17/01/2024 - Do the homework from Permissions section of Thinkfic
