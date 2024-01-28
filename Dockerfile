@@ -10,16 +10,18 @@ RUN mkdir -p /code
 WORKDIR /code
 
 COPY requirements.txt /tmp/requirements.txt
+
 RUN set -ex && \
     pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
+
 COPY crowdfunding/ /code/
 
-ENV SECRET_KEY "nQDB7ySrJpaOhSoNUWMe9G4cfIOx4bofOr2Bzge5vlREEhVjkx"
 RUN python manage.py collectstatic --noinput
 RUN chmod +x /code/run.sh
 
 EXPOSE 8000
 
+# replace demo.wsgi with crowdfunding-back-end-shecodes-booktranslation.wsgi
 CMD ["/code/run.sh"]
